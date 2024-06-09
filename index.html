@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Dynamic Resource-Intensive Page</title>
+<style>
+    /* CSS animation for heavy animation */
+    @keyframes colorChange {
+        0% { background-color: red; }
+        50% { background-color: blue; }
+        100% { background-color: red; }
+    }
+
+    /* Define a class for elements with heavy animation */
+    .heavy-animation {
+        animation: colorChange 5s infinite;
+    }
+
+    /* Additional dynamic styling */
+    .random-size {
+        width: calc(100px + 10 * Math.random());
+        height: calc(100px + 10 * Math.random());
+    }
+</style>
+</head>
+<body>
+<h1>Enhanced Dynamic Resource-Intensive Page</h1>
+<script>
+    // Function to generate random number within a range
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Function to shuffle array elements
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+
+    // Function to delete and re-create elements
+    function refreshPage() {
+        // Remove all existing elements
+        document.body.innerHTML = '';
+
+        // Create new elements
+        var images = [
+            "https://t3.ftcdn.net/jpg/05/71/06/76/360_F_571067620_JS5T5TkDtu3gf8Wqm78KoJRF1vobPvo6.jpg",
+            "https://wallpapers.com/images/featured/8k-e16w8b36gngra7a4.jpg",
+            "https://wallpapers.com/images/hd/cherry-blossom-in-lava-p8cc9zmjtwvlmuvy.jpg"
+        ];
+        
+        images = shuffleArray(images); // Shuffle the array of images randomly
+        
+        for (var i = 0; i < 30; i++) {
+            var img = document.createElement("img");
+            img.src = images[i % 3]; // Alternate between the three images
+            img.alt = "Image " + (i + 1);
+            img.classList.add("random-size"); // Apply dynamic styling
+            document.body.appendChild(img);
+        }
+
+        for (var i = 0; i < 30; i++) {
+            var p = document.createElement("p");
+            p.textContent = "This is a resource-intensive paragraph.";
+            p.classList.add("heavy-animation");
+            document.body.appendChild(p);
+        }
+
+        // Heavy computations
+        var result1 = 0;
+        for (var i = 0; i < 20000000; i++) {
+            result1 += Math.sqrt(i);
+        }
+        console.log("Heavy computation result 1: " + result1);
+
+        var result2 = 0;
+        for (var i = 0; i < 30000000; i++) {
+            result2 += Math.pow(i, 2);
+        }
+        console.log("Heavy computation result 2: " + result2);
+
+        var result3 = 0;
+        for (var i = 0; i < 40000000; i++) {
+            result3 += Math.log(i + 1);
+        }
+        console.log("Heavy computation result 3: " + result3);
+    }
+
+    // Call refreshPage() function repeatedly
+    setInterval(refreshPage, 5000); // Refresh the page every 5 seconds initially
+</script>
+</body>
+</html>
